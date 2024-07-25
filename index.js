@@ -10,18 +10,21 @@ function authenicate(req,res,next){
     if (req.body['password']=='Manohar3404'){
         passwordauthenication=true;
     }
+    next();
 }
 app.use(authenicate);
-app,get('/',(req,res)=>{
+app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/index.html');
 });
 app.post('/submit',(req,res)=>{
     if (passwordauthenication){
-        res.sendFile(__dirname+'/public/index.html');
+        res.sendFile(__dirname+'/public/secret.html');
     }
     else {
-        res.sendFile(__dirname+'/public/secret.html')
+        res.sendFile(__dirname+'/public/index.html')
     }
 });
-
+app.listen(3000,()=>{
+    console.log('server created');
+})
     
